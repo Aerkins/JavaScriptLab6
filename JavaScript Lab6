@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>CIS 223 Chapter 10 Program</title>
+    <meta charset="utf-8">
+<script>
+var sizePrice=0;
+var toppingPrice=0;
+var totalPrice=0;
+var deliveryFee=0;
+var toppings = document.getElementsByName("toppings"); // Collects all the checkboxes with the name "toppings" into a variable named toppings.
+var size;
+var name;
+
+function sizeUpdateSmall() {
+    sizePrice = 8;
+    size = "Small";
+    displayTotal();
+}
+function sizeUpdateMedium() {
+    sizePrice = 10;
+    size = "Medium";
+    displayTotal();
+}
+function sizeUpdateLarge() {
+    sizePrice = 12;
+    size = "Large";
+    displayTotal();
+}
+function sizeUpdateExtraLarge() {
+    sizePrice = 14;
+    size = "Extra Large";
+    displayTotal();
+}
+function toppingUpdatePepperoni() {
+	toppingPrice = 1.5;
+	topping = "Pepperoni"
+	displayTotal();
+}
+function toppingUpdateSausage() {
+	toppingPrice = 1.5;
+	topping = "Sausage"
+	displayTotal();
+}
+function toppingUpdateBacon() {
+	toppingPrice = 1.5;
+	topping = "Bacon"
+	displayTotal();
+}
+function toppingUpdateOnion() {
+	toppingPrice = 1.5;
+	topping = "Onion"
+	displayTotal();
+}
+function toppingUpdateSpinach() {
+	toppingPrice = 1.5;
+	topping = "Spinach"
+	displayTotal();
+}
+function typeUpdate() {
+	if (document.getElementsByName("type") == ("Delivery"))
+		{
+			type = "Delivery";
+			deliveryFee = 2;
+		}
+	else
+		{
+			type = "Pick-Up";
+			deliveryFee = 0;
+		}
+	displayTotal();
+}
+
+<!-- This is the function that will display all the results to the screen -->
+function displayTotal() {
+    name = document.getElementById("name").value;
+
+    totalPrice = sizePrice + toppingPrice + deliveryFee; 
+    document.getElementById("total").innerHTML = totalPrice;
+	
+    
+    if (name != "First Last") { 
+        document.getElementById("orderHeader").innerHTML = "<h1>" + name + "'s Order</h1>";
+		} 
+		
+		document.getElementById("tableTopping").innerHTML = topping;
+		
+		document.getElementById("tableToppingPrice").innerHTML = "$" + toppingPrice
+
+		document.getElementById("tableSize").innerHTML = size; 
+
+		document.getElementById("tableSizePrice").innerHTML = "$" + sizePrice;
+		
+		document.getElementById("tableType").innerHTML = type; 
+
+		document.getElementById("tableTypePrice").innerHTML = "$" + deliveryFee;
+}
+
+</script>
+
+</head>
+<body>
+    <form>
+    <!-- Customer's Name -->
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="First Last"><br><br>
+
+    <!-- Size of Pizza -->
+    <p>Please choose your size of pizza:</p>
+	
+    <input type="radio" id="small" name="size" value="small" onclick="sizeUpdateSmall()">
+    <label for="small">Small  $8.00</label><br>
+	
+    <input type="radio" id="medium" name="size" value="medium" onclick="sizeUpdateMedium()">
+    <label for="medium">Medium  $10.00</label><br>
+
+	<input type="radio" id="large" name="size" value="large" onclick="sizeUpdateLarge()">
+    <label for="large">Large $12.00</label><br>
+
+    <input type="radio" id="extralarge" name="size" value="extra large" onclick="sizeUpdateExtraLarge()">
+    <label for="extralarge">Extra Large $14.00</label><br>
+	
+	<!-- Pizza Topping -->
+    <p>Please choose your toppings ($1.50 each):</p>
+	<input type="checkbox" id="pepperoni" name="toppings" value="pepperoni" onclick="toppingUpdatePepperoni()"><br>
+	<input type="checkbox" id="sausage" name="toppings" value="sausage" onclick="toppingUpdateSausage()">
+    <br>
+	<input type="checkbox" id="bacon" name="toppings" value="bacon" onclick="toppingUpdateBacon()">
+    <br>
+	<input type="checkbox" id="onions" name="toppings" value="onions" onclick="toppingUpdateOnion()">
+    <br>
+	<input type="checkbox" id="spinach" name="toppings" value="spinach" onclick="toppingUpdateSpinach()">
+    <br>
+	
+	
+    <br><br>
+	<select name="type" id="type" onclick="typeUpdate()">
+	<option value="pickup">Pick-Up</option>
+	<option value="delivery">Delivery</option>
+	</select>
+	<br><br>
+    <a href="Erkins_Lab6_2.html">
+    <input type="button" value="Confirm Your Order" onclick="sendOrder()">
+    </a>
+    
+    <!-- Displays a chart of all the currently selected items and the total -->
+    <span id="orderHeader"><h1>Your Order</h1></span>
+    <table width=50% border=1>
+    <tr>
+    <th>Description</th>
+    <th>Option</th>
+    <th>Price</th>
+    </tr>
+    <td width=50%>Size</td>
+    <td width=25%><span id="tableSize"></span></td>
+    <td width=25%><span id="tableSizePrice"></span></td>
+    <tr>
+    <td width=50%>Toppings</td>
+    <td width=25%><span id="tableTopping"></span></td>
+    <td width=25%><span id="tableToppingPrice"></span></td>
+    </tr>
+    <tr>
+    <td width=50%>Pick-Up / Delivery</td>
+    <td width=25%><span id="tableType"></span></td>
+    <td width=25%><span id="tableTypePrice"></span></td>
+    </tr>
+    </table>
+    <h4>Your Current Total is $<span id="total"></span></h4>
+    <h4><span id="cancellation"></span></h4>
+</body>
+</html>
